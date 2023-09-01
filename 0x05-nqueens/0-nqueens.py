@@ -2,6 +2,7 @@
 """ N queens puzzle Algorithm """
 import sys
 
+
 def is_safe(board, row, col, N):
     """ Checks if it's safe to place a queen at the given row
         and column on the board of size NxN."""
@@ -15,6 +16,7 @@ def is_safe(board, row, col, N):
         if board[i][j]:
             return False
     return True
+
 
 def solve_nqueens(N):
     """ Solves the N Queens problem for a given board size NxN. """
@@ -43,6 +45,7 @@ def solve_nqueens(N):
     for solution in solutions:
         print(solution)
         print()
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
