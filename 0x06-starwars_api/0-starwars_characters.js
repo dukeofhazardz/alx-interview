@@ -14,7 +14,7 @@ const movieID = process.argv[2];
 const movieURL = `https://swapi.dev/api/films/${movieID}/`;
 
 // Function to fetch characters for a movie
-function fetchMovieCharacters(url) {
+function fetchMovieCharacters (url) {
   request(url, (error, response, body) => {
     if (error) {
       console.error('Error:', error);
