@@ -4,21 +4,25 @@ Making Change
 """
 
 def makeChange(coins, total):
-    """ A function that returns the fewest number of coins needed to meet total
+    """A function that returns the fewest number of coins needed to meet total
     """
     if total <= 0:
         return 0
 
-    # Create a list to store the minimum number of coins needed
-    # for each amount from 0 to 'total'
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0  # Zero coins are needed to make change for 0
+    coins.sort(reverse=True)
 
-    for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+    num_coins = 0
+    current_total = total
+    i = 0
 
-    if dp[total] == float('inf'):
-        return -1  # Cannot make change for the given total
+    while i < len(coins):
+        if current_total >= coins[i]:
+            current_total -= coins[i]
+            num_coins += 1
+        else:
+            i += 1
+
+    if current_total == 0:
+        return num_coins
     else:
-        return dp[total]
+        return -1
