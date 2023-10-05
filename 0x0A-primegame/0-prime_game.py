@@ -2,28 +2,28 @@
 """ Prime Game Algorithm """
 
 
-def is_prime(num):
+def sieve_of_eratosthenes(limit):
     """ A function that checks if a number is prime
     """
-    if num < 2:
-        return False
-    for i in range(2, int(num ** 0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+    primes = [True] * (limit + 1)
+    primes[0] = primes[1] = False
+
+    for i in range(2, int(limit**0.5) + 1):
+        if primes[i]:
+            for j in range(i*i, limit + 1, i):
+                primes[j] = False
+
+    return [num for num, is_prime in enumerate(primes) if is_prime]
 
 
 def isWinner(x, nums):
     """ A function that returns name of the player that won the most rounds
     """
-    def get_primes(n):
-        primes = [i for i in range(2, n + 1) if is_prime(i)]
-        return primes
 
     winners = {"Maria": 0, "Ben": 0}
 
     for n in nums:
-        primes = get_primes(n)
+        primes = sieve_of_eratosthenes(n)
         xor_sum = 0
 
         for prime in primes:
